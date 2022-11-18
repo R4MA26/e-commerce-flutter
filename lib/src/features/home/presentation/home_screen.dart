@@ -14,7 +14,9 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ButtonWidget.blue(
+                // isLoading: true,
                 // isEnabled: false,
+                isSmall: true,
                 text: 'blue',
                 onTap: () {},
               ),
@@ -22,6 +24,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ButtonWidget.white(
+                // isLoading: true,
                 // isEnabled: false,
                 text: 'white',
                 onTap: () {},

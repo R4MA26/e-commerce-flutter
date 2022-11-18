@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
     required this.text,
     bool? isEnabled,
     this.onTap,
-    this.isShrink = false,
+    this.isSmall = false,
     this.isLoading = false,
   })  : _isEnabled = isEnabled ?? onTap != null ? true : false,
         color = ColorApp.blueOcean,
@@ -26,7 +26,7 @@ class ButtonWidget extends StatelessWidget {
     required this.text,
     bool? isEnabled,
     this.onTap,
-    this.isShrink = false,
+    this.isSmall = false,
     this.isLoading = false,
   })  : _isEnabled = isEnabled ?? onTap != null ? true : false,
         color = ColorApp.pureWhite,
@@ -43,7 +43,7 @@ class ButtonWidget extends StatelessWidget {
   final Color focusColor;
   final Color overlayColor;
   final Color textColor;
-  final bool isShrink;
+  final bool isSmall;
   final bool isLoading;
   final String text;
 
@@ -78,6 +78,20 @@ class ButtonWidget extends StatelessWidget {
     return null;
   }
 
+  EdgeInsets _getPadding() {
+    if (isSmall) {
+      return const EdgeInsets.symmetric(
+        horizontal: 30,
+        vertical: 8,
+      );
+    } else {
+      return const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 16,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -89,11 +103,8 @@ class ButtonWidget extends StatelessWidget {
         focusColor: _getFocusColor(),
         overlayColor: _getOverlayColor(),
         child: Container(
-          width: isShrink ? null : double.infinity,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
-          ),
+          width: isSmall ? null : double.infinity,
+          padding: _getPadding(),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: _getBorder(),
@@ -113,7 +124,7 @@ class ButtonWidget extends StatelessWidget {
                 child: Text(
                   text,
                   style: TextStyle(
-                    color: textColor,
+                    color: !_isEnabled ? Colors.grey[300] : textColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
